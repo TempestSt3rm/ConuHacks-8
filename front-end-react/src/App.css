@@ -40,3 +40,35 @@
 .read-the-docs {
   color: #888;
 }
+
+.tireChange {
+  color: #bb6117;
+  font-size: 100px;
+  text-align: center;
+  position: relative;
+  top: 5px;
+  left: 10px; 
+}
+
+.revenue {
+  text-align: center;
+}
+
+.schedule {
+  position: relative;
+ 
+  right: 200px;
+}
+
+.customerNumbers {
+  position: relative;
+  left: 300px;
+
+}
+
+.tireChangeImage {
+  text-align: center;
+  position: relative;
+  bottom: 50px;
+  left: 200px;
+}
