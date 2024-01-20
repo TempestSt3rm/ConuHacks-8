@@ -1,7 +1,7 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
 }
 
@@ -46,29 +46,29 @@
   font-size: 100px;
   text-align: center;
   position: relative;
-  top: 5px;
+  /* top: 0px; */
   left: 10px; 
+  margin-top: 0px;
 }
 
 .revenue {
-  text-align: center;
+  position: relative;
+  right: 100px;
 }
 
 .schedule {
-  position: relative;
- 
-  right: 200px;
+ position:relative;
+ left: -200px;
 }
 
 .customerNumbers {
   position: relative;
   left: 300px;
-
+  top: 100px;
 }
 
 .tireChangeImage {
-  text-align: center;
   position: relative;
   bottom: 50px;
-  left: 200px;
+  left: 125px;
 }
