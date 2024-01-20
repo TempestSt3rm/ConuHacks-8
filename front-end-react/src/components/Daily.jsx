@@ -14,9 +14,9 @@ function Daily() {
     const [value, setValue] = useState();
     const [response, setResponse] = useState({});
     let search = async () => {
-        const r = await axios.get('http://localhost:5000/schedule/'+'2022-11-30'
+        const r = await axios.get('http://localhost:5000/schedule/'+'2022-10-09'
         );
-        console.log(r);
+        console.log(r.data);
         // setResponse(r.data);
     }
     return (
