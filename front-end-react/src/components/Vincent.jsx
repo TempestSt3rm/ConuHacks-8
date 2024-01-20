@@ -1,6 +1,8 @@
 import tireChangeImage from '../assets/images/tirechange.jpeg';
+import tire_repair from '../assets/images/tire_repair.png';
 
 export default function Vincent() {
+    
     
     return (
         <> 
@@ -8,8 +10,10 @@ export default function Vincent() {
             <img src={tireChangeImage} className="tireChangeImage" alt="Tire Change Shop" />
             <a href="/schedule" className="schedule">Schedule</a>
             <a href="/revenue" className="revenue">Revenue</a>
-            <a href="/customerNumbers" clasName="customerNumbers">Customer Numbers</a>
+            <a href="/customerNumbers" className="customerNumbers">Customer Numbers</a>
             <input type="date" name="Calendar" id="calendar" />
+            <img src={tire_repair} className="tireRepair" alt="Tire Repair" />   
+            
         </>
     )
 

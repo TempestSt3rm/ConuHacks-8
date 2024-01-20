@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import axios from 'axios';
 import Vincent from './components/Vincent.jsx'
-
+import CalendarDayView from './components/calendarDayView.jsx';
 
 function App() {
   const [data, setData] = useState('');
@@ -22,6 +22,7 @@ function App() {
 
   return (
     <>
+      <CalendarDayView></CalendarDayView>
       <Vincent></Vincent>
       {/* <h1>The Tire Change Shop</h1> */}
      
