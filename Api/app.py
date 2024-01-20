@@ -43,13 +43,13 @@ def index():
 
 @app.route('/schedule/<string:date>')
 def gettby_date(date):
-    response = Entry.query.filter(func.substring(Entry.timeOfAppointment,1,13) == date).all()
+    response = Entry.query.filter(func.substring(Entry.timeOfAppointment,1,10) == date).all()
     
     array = []
     for i in response:
-        array.append(i.id)
+        array.append([i.id,i.timeOfRequest, i.timeOfAppointment, i.typeOfVehicle,i.state])
     
-    return jsonify(len(array))
+    return jsonify(array)
 
 @app.route('/api/data')
 def get_data():
