@@ -3,6 +3,7 @@ from flask_cors import CORS
 import csv
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -15,6 +16,7 @@ class Entry(db.Model):
     timeOfRequest = db.Column(db.String(50), nullable=False)
     timeOfAppointment = db.Column(db.String(50), nullable=False)
     typeOfVehicle = db.Column(db.String(50), nullable=False)
+    state = db.Column(db.Boolean, default = False)
 
     def __repr__(self):
         return '<Entry %r>' % self.id
@@ -36,8 +38,18 @@ with app.app_context():
 def index():
     array = []
     for i in Entry.query.all():
-        array.append([i.id,i.timeOfRequest, i.timeOfAppointment, i.typeOfVehicle])
+        array.append([i.id,i.timeOfRequest, i.timeOfAppointment, i.typeOfVehicle,i.state])
     return jsonify(array)
+
+@app.route('/schedule/<string:date>')
+def gettby_date(date):
+    response = Entry.query.filter(func.substring(Entry.timeOfAppointment,1,13) == date).all()
+    
+    array = []
+    for i in response:
+        array.append(i.id)
+    
+    return jsonify(len(array))
 
 @app.route('/api/data')
 def get_data():
