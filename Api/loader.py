@@ -44,10 +44,13 @@ def track_revenue(service_request : ServiceRequest):
         serviced_customers[service_request.vehicle_type] = 1
 
 def turn_away(service_request):
-    # If rescheduling isn't possible, mark as turned away and track potential revenue loss
-    service_request.bay = None
+    global potential_revenue_loss
+    potential_revenue_loss += service_request.getCharge()
+    if service_request.vehicle_type in turned_away_customers:
+        turned_away_customers[service_request.vehicle_type] += 1
+    else:
+        turned_away_customers[service_request.vehicle_type] = 1
 
-"""
 # Create bays
 for i in range(0, 6):
     bays.append(Bay("Any"))
@@ -72,18 +75,24 @@ with open('datafile.csv', 'r') as csvfile:
 for service_request in request_list:
     bay = is_available(service_request)
     if bay != None:
-        assign_bay(bay)
+        assign_bay(service_request, bay)
         track_revenue(service_request)
     else:
         turn_away(service_request)
 
 # Sort scheduled appointments by start time
 scheduled_appointments.sort(key=lambda x: x.getStartTime())
-"""
 
 # Print results
-#print(f"Scheduled appointments: {scheduled_appointments}")
-#print(f"Serviced customers: {serviced_customers}")
-#print(f"Turned away customers: {turned_away_customers}")
-#print(f"Revenue generated: {revenue_generated}")
-#print(f"Potential revenue loss: {potential_revenue_loss}")  
+print(f"Scheduled appointments: {scheduled_appointments}")
+print(f"Serviced customers: {serviced_customers}")
+print(f"Turned away customers: {turned_away_customers}")
+print(f"Revenue generated: {revenue_generated}")
+print(f"Potential revenue loss: {potential_revenue_loss}")  
+
+#write request list to csv
+with open('alloutput.csv', 'w', newline='') as csvfile:
+    writer = csv.writer(csvfile)
+    for request in request_list:
+        if request.bay == None:
+            writer.writerow([request.timestamp, request.requested_appointment, request.vehicle_type, "None"])
