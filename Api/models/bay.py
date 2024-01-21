@@ -22,6 +22,9 @@ class Bay():
     
     def addEntry(self,entry):
         self.schedule.append(entry)
+    
+    def clear(self):
+        self.schedule = []
 
 class SpecialBay(Bay):
     def __init__(self,vehiculeType):

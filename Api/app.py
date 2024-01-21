@@ -20,6 +20,13 @@ class Entry(db.Model):
 
     def __repr__(self):
         return '<Entry %r>' % self.id
+    
+class DaySchedule(db.Model):
+    id = db.Column(db.String(50), primary_key=True)
+
+
+    def __repr__(self):
+        return '<Table %r>' % self.id
 
 with app.app_context():
     array = []
