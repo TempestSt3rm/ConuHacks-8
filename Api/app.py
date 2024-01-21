@@ -7,7 +7,7 @@ from sqlalchemy import func
 import csv
 from service_request import ServiceRequest
 from bay import Bay
-from loader import *
+#from loader import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///newdata.db'
@@ -28,6 +28,17 @@ class Request(db.Model):
     def __repr__(self):
         return '<Request %r>' % self.id
     
+class RequestFail(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.String(50), nullable=False)
+    requested_appointment = db.Column(db.String(50), nullable=False)
+    vehicle_type = db.Column(db.String(50), nullable=False)
+    bayId = db.Column(db.String(50))
+
+    def __repr__(self):
+        return '<RequestFail %r>' % self.id
+    
+
 
 with app.app_context():
     db.create_all()
@@ -41,6 +52,17 @@ with app.app_context():
             db.session.add(content)
     db.session.commit()
 
+    with open('rejected.csv', 'r') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            request_timestamp, requested_date_time, vehicle_type, bayNum = row  # Extract request details
+            content = RequestFail(timestamp=request_timestamp,requested_appointment=requested_date_time, vehicle_type=vehicle_type,bayId=bayNum)
+            db.session.add(content)
+    db.session.commit()
+
+
+
+
 
 @app.route('/')
 def index():
@@ -49,17 +71,28 @@ def index():
         array.append([i.id, i.timestamp, i.requested_appointment, i.vehicle_type, i.bayId])
     return jsonify(array)
 
+@app.route('/fail')
+def failure():
+    array = []
+    for i in RequestFail.query.all():
+        array.append([i.id, i.timestamp, i.requested_appointment, i.vehicle_type, i.bayId])
+    return jsonify(array)
+
 @app.route('/schedule/<string:date>')
 def gettby_date(date):
     response = Request.query.filter(func.substring(Request.requested_appointment,1,10) == date).all()
-    
     array = []
     for i in response:
         array.append([i.id,i.timestamp, i.requested_appointment, i.vehicle_type,i.bayId])
-    
+
+    responsefail = RequestFail.query.filter(func.substring(RequestFail.requested_appointment,1,10) == date).all()
+    for i in responsefail:
+        array.append([i.id,i.timestamp, i.requested_appointment, i.vehicle_type,i.bayId])
+
+
     return jsonify(array)
 
-@app.route('/api/data')
+@app.route('/test')
 def get_data():
     data = {'message': 'Hello from Flask!'}
     return jsonify(data)
