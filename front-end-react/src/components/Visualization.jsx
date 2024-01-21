@@ -1,6 +1,6 @@
 import Navbar from "./Navbar"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Daily.css"
 import axios from 'axios';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -22,8 +22,10 @@ import {
     Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
+import V1 from "./V1";
+
 function Visualization() {
-    const [day, setDay] = useState("2022-10-1");
+    const [day, setDay] = useState("2024-10-01");
     const [a, setA] = useState(0);
     const [b, setb] = useState(0);
     const [c, setc] = useState(0);
@@ -33,39 +35,124 @@ function Visualization() {
     const [response, setResponse] = useState([]);
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-    const data = {
-        labels: ['January', 'February', 'March', 'April', 'May'],
-        datasets: [
-            {
-                label: 'Sample Bar Chart',
-                backgroundColor: 'rgba(75,192,192,0.2)',
-                borderColor: 'rgba(75,192,192,1)',
-                borderWidth: 1,
-                hoverBackgroundColor: 'rgba(75,192,192,0.4)',
-                hoverBorderColor: 'rgba(75,192,192,1)',
-                data: [65, 59, 80, 81, 56],
-            },
-        ],
-    };
+    const schedulerData = [
+        { startDate: '2022-10-01T09:45', endDate: '2022-10-01T11:00', title: 'Meeting' }
+        // {startDate: '2023-10-01T14:07', endDate: '2023-10-01T15:07', title: 'Servicing'}
+    ];
+    // const data = {
+    //     labels: ['January', 'February', 'March', 'April', 'May'],
+    //     datasets: [
+    //         {
+    //             label: 'Sample Bar Chart',
+    //             backgroundColor: 'rgba(75,192,192,0.2)',
+    //             borderColor: 'rgba(75,192,192,1)',
+    //             borderWidth: 1,
+    //             hoverBackgroundColor: 'rgba(75,192,192,0.4)',
+    //             hoverBorderColor: 'rgba(75,192,192,1)',
+    //             data: [65, 59, 80, 81, 56],
+    //         },
+    //     ],
+    // };
 
-    const options1 = {
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
-    };
+    // const options1 = {
+    //     scales: {
+    //         y: {
+    //             beginAtZero: true,
+    //         },
+    //     },
+    // };
+    const [shouldRender, setShouldRender] = useState(false);
+    useEffect(() => {
+        // Code inside this block will run after every render
 
+        // Simulating an asynchronous operation (e.g., data fetching)
+        const fetchData = async () => {
+            //   try {
+            // const response = await fetch('http://localhost:5000/schedule/' + day);
+            const r = await axios.get('http://localhost:5000/schedule/' + "2022-10-01"
+            );
+            // const result = await response.json();
+            // setData(result);
+            //   } catch (error) {
+            // console.error('Error fetching data:', error);
+            //   }
+            for (let i = 0; i < r.data.length; i++) {
+                // console.log("value i is", i);
+                // console.log(r.data[i][3]);
+                let ele = r.data[i];
+                if (r.data[i][4] == "1") {
+                    console.log(ele[2].substring(0, 10));
+                    const originalDate = new Date(ele[2].substring(0, 10));
+                    console.log("og tinme", originalDate);
+                    if (ele[3] == "class 1 truck") {
+
+
+                        const newDate = new Date(originalDate.getTime() + 60 * 60 * 1000); // 30 minutes in milliseconds
+                        const newDateString = newDate.toISOString().slice(0, 10);
+
+                        let end = parseInt(ele[2].substring(12, 14)) + 1;
+                        let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: "Meeting" }
+                        // schedulerData = [...schedulerData, k];
+                        schedulerData.push(k);
+
+                    } else if (ele[3] == "class 2 truck") {
+                        const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
+                        const newDateString = newDate.toISOString().slice(0, 10);
+                        // let end = parseInt(ele[2].substring(12,14)) + 2;
+                        // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                        let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                        // schedulerData = [...schedulerData, k];
+                        // schedulerData.push(k);
+                    } else {
+
+                        const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
+                        const newDateString = newDate.toISOString().slice(0, 10);
+                        console.log(r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16));
+                        console.log(ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16));
+                        // let end = parseInt(ele[2].substring(14,16)) + 30;
+                        // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                        let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                        // schedulerData = [...schedulerData, k];
+                        // schedulerData.push(k);
+                    }
+
+                }
+                console.log(schedulerData);
+                const delay = setTimeout(() => {
+                    setShouldRender(true);
+                  }, 2000);
+              
+                  // Cleanup function to clear the timeout if the component unmounts
+                  return () => clearTimeout(delay);
+            }
+        };
+
+        fetchData();
+
+        // Cleanup function (optional)
+        return () => {
+            // Code inside this block will run before the next render
+            console.log('Cleanup function executed');
+        };
+    }, []);
 
     let reset = () => {
         setA(0);
-        console.log("a", a);
+        // console.log("a", a);
         setb(0);
         setc(0);
         setd(0);
         sete(0);
         setTotal(0);
     }
+
+
+
+    const d1 = [
+        { startDate: '2022-10-01T09:45', endDate: '2022-10-01T11:00', title: 'Meeting' }
+
+    ]
+
 
     let search = async () => {
 
@@ -81,18 +168,59 @@ function Visualization() {
         // setd(0);
         // sete(0);
         // reset();
-        console.log("a", a);
+        console.log("res", r.data);
         // console.log("a", a);
         let ca = 0;
         let cb = 0;
         let cc = 0;
         let cd = 0;
         let ce = 0;
-        console.log("ca", ca);
+        // console.log("ca", ca);
 
         for (let i = 0; i < r.data.length; i++) {
             // console.log("value i is", i);
             // console.log(r.data[i][3]);
+            let ele = r.data[i];
+            if (r.data[i][4] == "1") {
+                console.log(ele[2].substring(0, 10));
+                const originalDate = new Date(ele[2].substring(0, 10));
+                console.log("og tinme", originalDate);
+                if (ele[3] == "class 1 truck") {
+
+
+                    const newDate = new Date(originalDate.getTime() + 60 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+
+                    let end = parseInt(ele[2].substring(12, 14)) + 1;
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: "Meeting2" }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData.push(k);
+
+                } else if (ele[3] == "class 2 truck") {
+                    const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    // let end = parseInt(ele[2].substring(12,14)) + 2;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    // schedulerData.push(k);
+                } else {
+
+                    const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    console.log(r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16));
+                    console.log(ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16));
+                    // let end = parseInt(ele[2].substring(14,16)) + 30;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    // schedulerData.push(k);
+                }
+
+            }
+            // print(schedulerData);
+
+
             let k = r.data[i][3];
             if (k == "compact") {
                 ca++;
@@ -137,6 +265,7 @@ function Visualization() {
         setc(c + cc);
         setd(d + cd);
         sete(e + ce);
+        console.log(...schedulerData);
 
     }
 
@@ -203,10 +332,10 @@ function Visualization() {
     // ];
 
     // const currentDate = '2018-11-01';
-    const schedulerData = [
-        { startDate: '2022-11-01T09:45', endDate: '2022-11-01T11:00', title: 'Meeting' },
-        { startDate: '2022-11-01T12:00', endDate: '2022-11-01T19:30', title: 'Go to a gym' },
-    ];
+    // const schedulerData = [
+    //     { startDate: '2022-11-01T09:45', endDate: '2022-11-01T11:00', title: 'Meeting' },
+    //     { startDate: '2022-11-01T12:00', endDate: '2022-11-01T19:30', title: 'Go to a gym' },
+    // ];
 
     return (
         <>
@@ -229,11 +358,11 @@ function Visualization() {
                 <div>
 
                     <h2>Count</h2>
-                    <p>Compact {a}</p>
-                    <p>Medium {b}</p>
-                    <p>Full-size {c}</p>
-                    <p>Truck type 1 {d}</p>
-                    <p>Truck type 2 {e}</p>
+                    <p>Compact: {a}</p>
+                    <p>Medium: {b}</p>
+                    <p>Full-size: {c}</p>
+                    <p>Truck type I: {d}</p>
+                    <p>Truck type II: {e}</p>
                     <p>Total: {total}</p>
                 </div>
             </div>
@@ -287,9 +416,10 @@ function Visualization() {
 
             <Scheduler
                 data={schedulerData}
+                // data={d1}
             >
                 <ViewState
-                    currentDate={day}
+                    currentDate={"2022-10-01"}
                 />
                 <DayView
                     startDayHour={7}
@@ -297,6 +427,15 @@ function Visualization() {
                 />
                 <Appointments />
             </Scheduler>
+            {/* <div>
+
+{ shouldRender ? (
+    
+    <V1 d={schedulerData}></V1>
+    ): <></>
+    
+}
+</div> */}
         </>
     )
 }
