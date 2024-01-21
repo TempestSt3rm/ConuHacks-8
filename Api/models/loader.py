@@ -45,7 +45,12 @@ def track_revenue(service_request : ServiceRequest):
 
 def turn_away(service_request):
     # If rescheduling isn't possible, mark as turned away and track potential revenue loss
-    service_request.bay = None
+    global potential_revenue_loss
+    potential_revenue_loss += service_request.getCharge()
+    if service_request.vehicle_type in turned_away_customers:
+        turned_away_customers[service_request.vehicle_type] += 1
+    else:
+        turned_away_customers[service_request.vehicle_type] = 1
 
 # Create bays
 for i in range(0, 6):
