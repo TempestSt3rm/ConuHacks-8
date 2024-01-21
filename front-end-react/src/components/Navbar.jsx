@@ -10,7 +10,6 @@ import {Link} from 'react-router-dom';
                     <Link to="/Dashboard">Dashboard</Link>
                     <Link to="/Visualization">Analysis</Link>
                     <Link to="/WalkIn">Walk-In</Link>
-                    <Link to="/Test">Test</Link>
             </nav>
             <hr></hr>
             <div style={{height:"100px"}}></div>

@@ -2,7 +2,8 @@ import Navbar from "./Navbar"
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import reactLogo from '../assets/react.svg'
 import "./Home.css"
-import TuneUp from "../assets/images/Tune_UP.png"
+import tuneUpGif from '../assets/images/Tune_UP.gif';
+
 
 function Home() {
     
@@ -13,7 +14,7 @@ function Home() {
           <img src={reactLogo} className="logo react" alt="React logo" style={{height:"300px"}}/>
         </a> */}
         {/* <DirectionsCarIcon style={{fontSize:"700px", height:"300px", position:"relative", top:"100px"}}></DirectionsCarIcon> */}
-        <img src={TuneUp} className="tuneUp" alt="TuneUp"></img>
+        <img src={tuneUpGif} className="tuneUp" alt="TuneUp"></img>
         {/* <h1 style={{position:"relative", top:"100px"}}>TuneUp</h1> */}
         </>
     )
