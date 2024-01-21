@@ -4,6 +4,7 @@ import axios from 'axios';
 import Vincent from './components/Vincent.jsx'
 
 import Navbar from './components/Navbar.jsx'
+import Home from './components/Home.jsx'  
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -26,11 +27,9 @@ function App() {
 
   return (
     <>
-      <Navbar></Navbar>
-      <div>
-        <Vincent></Vincent>
-        {/* <h1>The Tire Change Shop</h1> */}
-      </div>
+    <Home></Home> 
+    
+     
  
 
     </>
