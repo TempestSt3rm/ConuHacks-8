@@ -36,10 +36,19 @@ function Visualization() {
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
     const [s, ss] = useState([]);
+    const [s2, ss2] = useState([]);
+    const [s3, ss3] = useState([]);
+    const [s4, ss4] = useState([]);
+    const [s5, ss5] = useState([]);
     const schedulerData = [
         // { startDate: '2022-10-01T09:45', endDate: '2022-10-01T11:00', title: 'Meeting' }
         // {startDate: '2023-10-01T14:07', endDate: '2023-10-01T15:07', title: 'Servicing'}
     ];
+    const schedulerData2 = [];
+    const schedulerData3 = [];
+    const schedulerData4 = [];
+    const schedulerData5 = [];
+
     // const data = {
     //     labels: ['January', 'February', 'March', 'April', 'May'],
     //     datasets: [
@@ -230,6 +239,265 @@ function Visualization() {
                 }
 
             }
+
+            if (r.data[i][4] == "2") {
+                console.log(ele[2].substring(0, 10));
+                const originalDate = new Date(ele[2].substring(0, 10));
+                console.log("og tinme", originalDate);
+                if (ele[3] == "class 1 truck") {
+
+
+                    const newDate = new Date(originalDate.getTime() + 60 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+
+                    let end = parseInt(ele[2].substring(12, 14)) + 1;
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData2.push(k);
+                    // ss(s.push(k));
+
+
+                } else if (ele[3] == "class 2 truck") {
+                    const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    // let end = parseInt(ele[2].substring(12,14)) + 2;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData2.push(k);
+                    // ss(s.push(k));
+
+                } else {
+
+                    const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    console.log(r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16));
+                    console.log(ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16));
+                    // let end = parseInt(ele[2].substring(14,16)) + 30;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData2.push(k);
+                    // ss(s.push(k));
+
+                }
+
+            }
+            // if (r.data[i][4] == "3") {
+            //     console.log(ele[2].substring(0, 10));
+            //     const originalDate = new Date(ele[2].substring(0, 10));
+            //     console.log("og tinme", originalDate);
+            //     if (ele[3] == "class 1 truck") {
+
+
+            //         const newDate = new Date(originalDate.getTime() + 60 * 60 * 1000); // 30 minutes in milliseconds
+            //         const newDateString = newDate.toISOString().slice(0, 10);
+
+            //         let end = parseInt(ele[2].substring(12, 14)) + 1;
+            //         let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: r.data[i][3] }
+            //         // schedulerData = [...schedulerData, k];
+            //         schedulerData2.push(k);
+            //         // ss(s.push(k));
+
+
+            //     } else if (ele[3] == "class 2 truck") {
+            //         const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
+            //         const newDateString = newDate.toISOString().slice(0, 10);
+            //         // let end = parseInt(ele[2].substring(12,14)) + 2;
+            //         // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+            //         let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+            //         // schedulerData = [...schedulerData, k];
+            //         schedulerData2.push(k);
+            //         // ss(s.push(k));
+
+            //     } else {
+
+            //         const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
+            //         const newDateString = newDate.toISOString().slice(0, 10);
+            //         console.log(r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16));
+            //         console.log(ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16));
+            //         // let end = parseInt(ele[2].substring(14,16)) + 30;
+            //         // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+            //         let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+            //         // schedulerData = [...schedulerData, k];
+            //         schedulerData2.push(k);
+            //         // ss(s.push(k));
+
+            //     }
+
+            // }
+            // if (r.data[i][4] == "4") {
+            //     console.log(ele[2].substring(0, 10));
+            //     const originalDate = new Date(ele[2].substring(0, 10));
+            //     console.log("og tinme", originalDate);
+            //     if (ele[3] == "class 1 truck") {
+
+
+            //         const newDate = new Date(originalDate.getTime() + 60 * 60 * 1000); // 30 minutes in milliseconds
+            //         const newDateString = newDate.toISOString().slice(0, 10);
+
+            //         let end = parseInt(ele[2].substring(12, 14)) + 1;
+            //         let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: r.data[i][3] }
+            //         // schedulerData = [...schedulerData, k];
+            //         schedulerData2.push(k);
+            //         // ss(s.push(k));
+
+
+            //     } else if (ele[3] == "class 2 truck") {
+            //         const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
+            //         const newDateString = newDate.toISOString().slice(0, 10);
+            //         // let end = parseInt(ele[2].substring(12,14)) + 2;
+            //         // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+            //         let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+            //         // schedulerData = [...schedulerData, k];
+            //         schedulerData2.push(k);
+            //         // ss(s.push(k));
+
+            //     } else {
+
+            //         const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
+            //         const newDateString = newDate.toISOString().slice(0, 10);
+            //         console.log(r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16));
+            //         console.log(ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16));
+            //         // let end = parseInt(ele[2].substring(14,16)) + 30;
+            //         // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+            //         let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+            //         // schedulerData = [...schedulerData, k];
+            //         schedulerData2.push(k);
+            //         // ss(s.push(k));
+
+            //     }
+
+            // }
+            if (r.data[i][4] == "3") {
+                console.log(ele[2].substring(0, 10));
+                const originalDate = new Date(ele[2].substring(0, 10));
+                console.log("og tinme", originalDate);
+                if (ele[3] == "class 1 truck") {
+
+
+                    const newDate = new Date(originalDate.getTime() + 60 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+
+                    let end = parseInt(ele[2].substring(12, 14)) + 1;
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData3.push(k);
+                    // ss(s.push(k));
+
+
+                } else if (ele[3] == "class 2 truck") {
+                    const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    // let end = parseInt(ele[2].substring(12,14)) + 2;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData3.push(k);
+                    // ss(s.push(k));
+
+                } else {
+
+                    const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    console.log(r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16));
+                    console.log(ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16));
+                    // let end = parseInt(ele[2].substring(14,16)) + 30;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData3.push(k);
+                    // ss(s.push(k));
+
+                }
+
+            }
+            if (r.data[i][4] == "4") {
+                console.log(ele[2].substring(0, 10));
+                const originalDate = new Date(ele[2].substring(0, 10));
+                console.log("og tinme", originalDate);
+                if (ele[3] == "class 1 truck") {
+
+
+                    const newDate = new Date(originalDate.getTime() + 60 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+
+                    let end = parseInt(ele[2].substring(12, 14)) + 1;
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData4.push(k);
+                    // ss(s.push(k));
+
+
+                } else if (ele[3] == "class 2 truck") {
+                    const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    // let end = parseInt(ele[2].substring(12,14)) + 2;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData4.push(k);
+                    // ss(s.push(k));
+
+                } else {
+
+                    const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    console.log(r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16));
+                    console.log(ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16));
+                    // let end = parseInt(ele[2].substring(14,16)) + 30;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData4.push(k);
+                    // ss(s.push(k));
+
+                }
+
+            }
+            if (r.data[i][4] == "5") {
+                console.log(ele[2].substring(0, 10));
+                const originalDate = new Date(ele[2].substring(0, 10));
+                console.log("og tinme", originalDate);
+                if (ele[3] == "class 1 truck") {
+
+
+                    const newDate = new Date(originalDate.getTime() + 60 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+
+                    let end = parseInt(ele[2].substring(12, 14)) + 1;
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData5.push(k);
+                    // ss(s.push(k));
+
+
+                } else if (ele[3] == "class 2 truck") {
+                    const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    // let end = parseInt(ele[2].substring(12,14)) + 2;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData5.push(k);
+                    // ss(s.push(k));
+
+                } else {
+
+                    const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
+                    const newDateString = newDate.toISOString().slice(0, 10);
+                    console.log(r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16));
+                    console.log(ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16));
+                    // let end = parseInt(ele[2].substring(14,16)) + 30;
+                    // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
+                    // schedulerData = [...schedulerData, k];
+                    schedulerData5.push(k);
+                    // ss(s.push(k));
+
+                }
+
+            }
             // print(schedulerData);
 
 
@@ -279,6 +547,10 @@ function Visualization() {
         sete(e + ce);
         console.log(...schedulerData);
         ss(schedulerData);
+        ss2(schedulerData2);
+        ss3(schedulerData3);
+        ss4(schedulerData4);
+        ss5(schedulerData5);
 
     }
 
@@ -437,20 +709,74 @@ function Visualization() {
             </ul>
 
 
-            
+            <div className="flex">
+
             <Scheduler
                 data={s}
                 // data={d1}
-            >
+                >
                 <ViewState
-                    currentDate={"2022-10-01"}
-                />
+                    currentDate={day}
+                    />
                 <DayView
                     startDayHour={7}
                     endDayHour={19}
-                />
+                    />
                 <Appointments />
             </Scheduler>
+            <Scheduler
+                data={s2}
+                // data={d1}
+                >
+                <ViewState
+                    currentDate={day}
+                    />
+                <DayView
+                    startDayHour={7}
+                    endDayHour={19}
+                    />
+                <Appointments />
+            </Scheduler>
+            <Scheduler
+                data={s3}
+                // data={d1}
+                >
+                <ViewState
+                    currentDate={day}
+                    />
+                <DayView
+                    startDayHour={7}
+                    endDayHour={19}
+                    />
+                <Appointments />
+            </Scheduler>
+            <Scheduler
+                data={s4}
+                // data={d1}
+                >
+                <ViewState
+                    currentDate={day}
+                    />
+                <DayView
+                    startDayHour={7}
+                    endDayHour={19}
+                    />
+                <Appointments />
+            </Scheduler>
+            <Scheduler
+                data={s5}
+                // data={d1}
+                >
+                <ViewState
+                    currentDate={day}
+                    />
+                <DayView
+                    startDayHour={7}
+                    endDayHour={19}
+                    />
+                <Appointments />
+            </Scheduler>
+                    </div>
             {/* <div>
 
 { shouldRender ? (

@@ -1,5 +1,6 @@
 import Navbar from "./Navbar"
 
+
 function Dashboard() {
 
     let totalRevenue = 1124350;
