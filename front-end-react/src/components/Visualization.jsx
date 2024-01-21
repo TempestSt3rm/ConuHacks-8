@@ -388,6 +388,31 @@ function Visualization() {
             </BarChart>
 
 
+            <h1>Total number of customers served by day</h1>
+            <BarChart width={600} height={300} data={data3}>
+                <XAxis dataKey="category" />
+                <YAxis />
+                <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+                <Bar dataKey="value" fill="#8884d8" />
+                <Tooltip />
+                <Legend />
+            </BarChart>
+
+
+            <h1>Total number of customers turned away by day</h1>
+            <BarChart width={600} height={300} data={data3}>
+                <XAxis dataKey="category" />
+                <YAxis />
+                <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
+                <Bar dataKey="value" fill="#8884d8" />
+                <Tooltip />
+                <Legend />
+            </BarChart>
+
+
+
+
+
 
             <Scheduler
                 data={schedulerData}
