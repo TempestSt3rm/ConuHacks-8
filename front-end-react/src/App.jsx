@@ -29,8 +29,7 @@ function App() {
     <>
       <div style={{display:"flex"}}>
 
-    <ReactScheduler></ReactScheduler>
-    <ReactScheduler></ReactScheduler>
+  
     </div>
       <Navbar></Navbar>
       <div>

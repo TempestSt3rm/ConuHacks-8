@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 
-import Home from "./components/Home.jsx"
-import Steve from "./components/Steve.jsx"
+import Schedule from "./components/Schedule.jsx"
+import Revenue from "./components/Revenue.jsx"
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Daily from './components/Daily.jsx'
+import NumberCustomers from './components/NumberCustomers.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,16 +17,16 @@ const router = createBrowserRouter([
     element: <App/>,
   },
   {
-    path: "/home",
-    element: <Home/>,
+    path: "/Schedule",
+    element: <Schedule/>,
   },
   {
-    path: "/Steve",
-    element: <Steve/>,
+    path: "/Revenue",
+    element: <Revenue/>,
   },
   {
-    path: "/Daily",
-    element: <Daily/>,
+    path: "/NumberCustomers",
+    element: <NumberCustomers/>,
   },
 ]);
 

@@ -224,7 +224,7 @@ small {
   transform: translateX(-90%);
 }
 
-.Home {
+.Schedule {
 /* make text size bigger */
   font-size: 200%;
   position: absolute;
@@ -234,7 +234,7 @@ small {
   transform: translateX(-50%);
 }
 
-.Steve {
+.Revenue {
   font-size: 200%;
   position: absolute;
   top:80%;
@@ -243,7 +243,7 @@ small {
   transform: translateX(-50%);
 }
 
-.Daily {
+.NumberCustomers {
   font-size: 200%;
   position: absolute;
   top:90%;

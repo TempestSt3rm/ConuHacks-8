@@ -1,13 +1,12 @@
 
 import { useState } from "react";
-import "./Daily.css"
 import axios from 'axios';
 // import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 // import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 // import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
-function Daily() {
+function NumberCustomers() {
 
     const [time, setTime] = useState();
     const [day, setDay] = useState();
@@ -47,4 +46,4 @@ function Daily() {
     )
 }
 
-export default Daily
+export default NumberCustomers
