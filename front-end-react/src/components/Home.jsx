@@ -1,9 +1,12 @@
+import Navbar from "./Navbar"
+
 
 function Home() {
     
     return (
         <>
-        <div>Home</div>
+        <Navbar className="w-full"></Navbar>
+        <h1>Welcome to home!!!</h1>
         </>
     )
 }

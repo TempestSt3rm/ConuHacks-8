@@ -4,29 +4,37 @@ import App from './App.jsx'
 import './index.css'
 
 import Home from "./components/Home.jsx"
-import Steve from "./components/Steve.jsx"
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import Daily from './components/Daily.jsx'
+import Dashboard from './components/Dashboard.jsx'
+import NotFound from './components/NotFound.jsx'
+import WalkIn from './components/WalkIn.jsx'
+
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App/>,
+    errorElement: <NotFound />,
   },
   {
     path: "/home",
     element: <Home/>,
   },
   {
-    path: "/Steve",
-    element: <Steve/>,
+    path: "/Dashboard",
+    element: <Dashboard/>,
   },
   {
-    path: "/Daily",
+    path: "/Analysis",
     element: <Daily/>,
+  },
+  {
+    path: "/WalkIn",
+    element: <WalkIn/>,
   },
 ]);
 

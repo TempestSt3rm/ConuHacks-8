@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  height: 1000px;
+  width: 800px;
 }
 
 .logo {
@@ -71,4 +73,20 @@
   position: relative;
   bottom: 50px;
   left: 200px;
+}
+
+#pageNotFound {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#four {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-55%);
+  left: 50%;
+  transform: translateX(-50%);
 }

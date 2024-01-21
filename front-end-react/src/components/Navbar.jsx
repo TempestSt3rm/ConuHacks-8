@@ -5,13 +5,14 @@ import {Link} from 'react-router-dom';
 
     return (
         <>
-            <nav>
-                <ul>
-                    <li><Link to="/Home">Home</Link></li>
-                    <li><Link to="/Steve">Steve</Link></li>
-                    <li><Link to="/Daily">Daily</Link></li>
-                </ul>
+            <nav className='flex justify-between w-full text-3xl'>
+                    <Link  to="/Home">Home</Link>
+                    <Link to="/Dashboard">Dashboard</Link>
+                    <Link to="/Analysis">Analysis</Link>
+                    <Link to="/WalkIn">Walk-In</Link>
             </nav>
+            <hr></hr>
+            <div style={{height:"100px"}}></div>
         </>
     )
 }

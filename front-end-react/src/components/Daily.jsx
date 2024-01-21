@@ -21,6 +21,10 @@ import {
     Appointments,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
+
+// official imports
+import Navbar from "./Navbar"
+
 function Daily() {
 
     const [time, setTime] = useState();
@@ -58,7 +62,7 @@ function Daily() {
     };
 
 
-    function reset() {
+    let reset = () => {
         setA(0);
         console.log("a", a);
         setb(0);
@@ -209,15 +213,14 @@ function Daily() {
 
     return (
         <>
+            <Navbar></Navbar>
             <form action="">
                 <input type="date" value={day} onClick={() => reset()}
                     onChange={(e) => setDay(e.target.value)}
                 />
-                <input type="time" value={time}
-                    onChange={(e) => setTime(e.target.value)} />
-
-
             </form>
+
+
             <h1 className="result">{time} {day}</h1>
             {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateCalendar className="bg-white text-black" />
@@ -229,8 +232,8 @@ function Daily() {
                 onChange={(newValue) => setValue(newValue)}
             /> */}
 
-            <button className="bg-black" onClick={() => s()}>The button</button>
-            <button onClick={() => reset()} className="bg-white text-black">Clear</button>
+            <button className="border-green bg-white" onClick={() => search()}>Search</button>
+            <button onClick={() => reset()} className="bg-white text-black border-red">Clear</button>
             {/* <ul>
                 {
 
@@ -279,7 +282,7 @@ function Daily() {
                 style={{ height: 500, backgroundColor: "green" }}
             />
 
-            <Scheduler className="w-100px"
+            <Scheduler
                 data={schedulerData}
             >
                 <ViewState
