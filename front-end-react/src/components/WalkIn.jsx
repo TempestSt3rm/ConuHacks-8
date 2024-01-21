@@ -41,15 +41,22 @@ function WalkIn() {
                             <input name="date" type="date" />
                         </div>
 
-                        <div style={{ position: "relative", top: "120px" }}>
+                        <div style={{ position: "relative", top: "110px" }}>
                             <label htmlFor="time">Desired time: </label>
                             <input name="time" type="time" />
                         </div>
+                        <div style={{ position: "relative", top: "140px" }}>
+                        <label htmlFor="bay">Bay number:    </label>
+                        <input type="number" name="bay"  min={1} max={10} style={{ border:"solid 2px lightblue", borderRadius:"10px", padding:"5px"}}/>
+                        </div>
 
-                        <button className="bg-white" style={{ position: "relative", top: "180px", width: "300px", left: "" }}>Create</button>
+                        <button className="bg-white" style={{ position: "relative", top: "150px", width: "300px", left: "" }}>Create</button>
                     </div>
                 </form>
 
+                <div className="flex " style={{position:"relative", left:"-100px"}}>
+
+
                     <Scheduler style={{ width: "100px" }}
                         data={schedulerData}
                     >
@@ -110,6 +117,7 @@ function WalkIn() {
                         />
                         <Appointments />
                     </Scheduler>
+                    </div>
 
                 </div>
 

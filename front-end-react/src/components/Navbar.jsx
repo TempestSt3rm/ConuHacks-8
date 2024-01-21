@@ -8,8 +8,9 @@ import {Link} from 'react-router-dom';
             <nav className='flex justify-between w-full text-3xl'>
                     <Link  to="/Home">Home</Link>
                     <Link to="/Dashboard">Dashboard</Link>
-                    <Link to="/Analysis">Analysis</Link>
+                    <Link to="/Visualization">Analysis</Link>
                     <Link to="/WalkIn">Walk-In</Link>
+                    <Link to="/Test">Test</Link>
             </nav>
             <hr></hr>
             <div style={{height:"100px"}}></div>

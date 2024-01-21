@@ -12,6 +12,7 @@ import Daily from './components/Daily.jsx'
 import Dashboard from './components/Dashboard.jsx'
 import NotFound from './components/NotFound.jsx'
 import WalkIn from './components/WalkIn.jsx'
+import Visualization from './components/Visualization.jsx'
 
 
 const router = createBrowserRouter([
@@ -29,8 +30,12 @@ const router = createBrowserRouter([
     element: <Dashboard/>,
   },
   {
-    path: "/Analysis",
+    path: "/Test",
     element: <Daily/>,
+  },
+  {
+    path: "/Visualization",
+    element: <Visualization/>,
   },
   {
     path: "/WalkIn",
