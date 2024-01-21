@@ -2,7 +2,8 @@ import Navbar from "./Navbar"
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import reactLogo from '../assets/react.svg'
 import "./Home.css"
-import tuneUpGif from '../assets/images/Tune_UP.gif';
+import tuneUpGif from '../assets/images/Tune_UP22.gif.gif';
+
 
 
 function Home() {

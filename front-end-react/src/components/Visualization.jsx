@@ -35,8 +35,9 @@ function Visualization() {
     const [response, setResponse] = useState([]);
     var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
+    const [s, ss] = useState([]);
     const schedulerData = [
-        { startDate: '2022-10-01T09:45', endDate: '2022-10-01T11:00', title: 'Meeting' }
+        // { startDate: '2022-10-01T09:45', endDate: '2022-10-01T11:00', title: 'Meeting' }
         // {startDate: '2023-10-01T14:07', endDate: '2023-10-01T15:07', title: 'Servicing'}
     ];
     // const data = {
@@ -91,9 +92,11 @@ function Visualization() {
                         const newDateString = newDate.toISOString().slice(0, 10);
 
                         let end = parseInt(ele[2].substring(12, 14)) + 1;
-                        let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: "Meeting" }
+                        let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: "Servicing " + r.data[i][3] }
                         // schedulerData = [...schedulerData, k];
                         schedulerData.push(k);
+                        // ss(s.push(k));
+
 
                     } else if (ele[3] == "class 2 truck") {
                         const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
@@ -102,7 +105,8 @@ function Visualization() {
                         // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
                         let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
                         // schedulerData = [...schedulerData, k];
-                        // schedulerData.push(k);
+                        schedulerData.push(k);
+                        // ss(s.push(k));
                     } else {
 
                         const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
@@ -113,17 +117,19 @@ function Visualization() {
                         // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
                         let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
                         // schedulerData = [...schedulerData, k];
-                        // schedulerData.push(k);
+                        schedulerData.push(k);
+                        // ss(s.push(k));
+
                     }
 
                 }
                 console.log(schedulerData);
                 const delay = setTimeout(() => {
                     setShouldRender(true);
-                  }, 2000);
-              
-                  // Cleanup function to clear the timeout if the component unmounts
-                  return () => clearTimeout(delay);
+                }, 2000);
+
+                // Cleanup function to clear the timeout if the component unmounts
+                return () => clearTimeout(delay);
             }
         };
 
@@ -192,9 +198,11 @@ function Visualization() {
                     const newDateString = newDate.toISOString().slice(0, 10);
 
                     let end = parseInt(ele[2].substring(12, 14)) + 1;
-                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: "Meeting2" }
+                    let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + "1" + end + ":" + ele[2].substring(14, 16), title: r.data[i][3] }
                     // schedulerData = [...schedulerData, k];
                     schedulerData.push(k);
+                    // ss(s.push(k));
+
 
                 } else if (ele[3] == "class 2 truck") {
                     const newDate = new Date(originalDate.getTime() + 120 * 60 * 1000); // 30 minutes in milliseconds
@@ -203,7 +211,9 @@ function Visualization() {
                     // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
                     let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
                     // schedulerData = [...schedulerData, k];
-                    // schedulerData.push(k);
+                    schedulerData.push(k);
+                    // ss(s.push(k));
+
                 } else {
 
                     const newDate = new Date(originalDate.getTime() + 30 * 60 * 1000);
@@ -214,7 +224,9 @@ function Visualization() {
                     // schedulerData += { startDate: r.data[i][2].substring(0,10)+"T"+r.data[i][2].substring(11,16), endDate: ele[2].substring(0, 10)+"T"+ele[2].substring(11,16), title: "Servicing "+r.data[i][3] };
                     let k = { startDate: r.data[i][2].substring(0, 10) + "T" + r.data[i][2].substring(11, 16), endDate: ele[2].substring(0, 10) + "T" + ele[2].substring(11, 16), title: "Servicing " + r.data[i][3] }
                     // schedulerData = [...schedulerData, k];
-                    // schedulerData.push(k);
+                    schedulerData.push(k);
+                    // ss(s.push(k));
+
                 }
 
             }
@@ -266,6 +278,7 @@ function Visualization() {
         setd(d + cd);
         sete(e + ce);
         console.log(...schedulerData);
+        ss(schedulerData);
 
     }
 
@@ -409,13 +422,24 @@ function Visualization() {
                 <Legend />
             </BarChart>
 
+            <h1>
+                Complete Log
+            </h1>
+            <ul>
+                {schedulerData.map((item, index) => (
+                    <li key={index}>{item.title}{item.startDate}{item.endDate}</li>
+                ))}
+            </ul>
+            <ul>
+                {s.map((item, index) => (
+                    <li key={index}>{item.title}{item.startDate}{item.endDate}</li>
+                ))}
+            </ul>
 
 
-
-
-
+            
             <Scheduler
-                data={schedulerData}
+                data={s}
                 // data={d1}
             >
                 <ViewState
