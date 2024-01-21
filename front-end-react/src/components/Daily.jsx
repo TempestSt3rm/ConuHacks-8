@@ -2,10 +2,10 @@
 import { useState } from "react";
 import "./Daily.css"
 import axios from 'axios';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+// import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+// import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 function Daily() {
 
@@ -31,10 +31,10 @@ function Daily() {
 
             </form>
             <h1 className="result">{time} {day}</h1>
-            <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateCalendar className="bg-white text-black"/>
-                {/* <DateTimePicker label="Basic date time picker" className="bg-white-200 text-white¨"/> */}
-            </LocalizationProvider>
+                <DateTimePicker label="Basic date time picker" className="bg-white-200 text-white¨"/>
+            </LocalizationProvider> */}
             {/* <DateCalendar
                 label="Controlled picker"
                 value={value}

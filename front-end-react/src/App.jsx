@@ -4,6 +4,8 @@ import axios from 'axios';
 import Vincent from './components/Vincent.jsx'
 import CalendarDayView from './components/calendarDayView.jsx';
 import Navbar from './components/Navbar.jsx'
+import ReactScheduler from './components/ReactScheduler.jsx'
+
 // import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 
@@ -25,6 +27,11 @@ function App() {
 
   return (
     <>
+      <div style={{display:"flex"}}>
+
+    <ReactScheduler></ReactScheduler>
+    <ReactScheduler></ReactScheduler>
+    </div>
       <Navbar></Navbar>
       <div>
         <Vincent></Vincent>
