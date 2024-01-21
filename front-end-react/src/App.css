@@ -1,3 +1,8 @@
+
+
+
+
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -41,14 +46,18 @@
   color: #888;
 }
 
-.tireChange {
+
+.tuneUp {
   color: #bb6117;
   font-size: 100px;
-  text-align: center;
-  position: relative;
-  /* top: 0px; */
-  left: 10px; 
-  margin-top: 60px;
+
+
+  position: absolute;
+  top: 20%;
+  transform: translateY(-20%);
+
+  left: 50%;
+  transform: translateX(-50%); 
 }
 
 .revenue {
@@ -76,10 +85,6 @@
   left: 125px;
 }
 
-/* new stuff */
-body {
-  font-family: Verdana;
-}
 
 .calendar {
   width: 740px;
@@ -168,4 +173,82 @@ small {
   color: #bb6117;
 }
 
+
+.tireRepair {
+  length: 15%;
+  width: 15%;
+  position: absolute;
+  top: 40%;
+  left: 10%;
+  transform: translateY(-40%);
+  transform: translateX(-10%);
+}
+
+.directionsCar {
+  length: 15%;
+  width: 15%;
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translateY(-40%);
+  transform: translateX(-30%);
+}
+
+.shippingTruck {
+  length: 15%;
+  width: 15%;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateY(-40%);
+  transform: translateX(-50%);
+}
+
+.engineering {
+  length: 15%;
+  width: 15%;
+  position: absolute;
+  top: 40%;
+  left: 70%;
+  transform: translateY(-40%);
+  transform: translateX(-70%);
+}
+
+.carRepair {
+  length: 15%;
+  width: 15%;
+  position: absolute;
+  top: 40%;
+  left: 90%;
+  transform: translateY(-40%);
+  transform: translateX(-90%);
+}
+
+.Home {
+/* make text size bigger */
+  font-size: 200%;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translateY(-70%);
+  transform: translateX(-50%);
+}
+
+.Steve {
+  font-size: 200%;
+  position: absolute;
+  top:80%;
+  left: 50%;
+  transform: translateY(-80%);
+  transform: translateX(-50%);
+}
+
+.Daily {
+  font-size: 200%;
+  position: absolute;
+  top:90%;
+  left: 50%;
+  transform: translateY(-90%);
+  transform: translateX(-50%);
+}
 

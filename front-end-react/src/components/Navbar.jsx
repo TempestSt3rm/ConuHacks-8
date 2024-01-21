@@ -7,9 +7,9 @@ import {Link} from 'react-router-dom';
         <>
             <nav>
                 <ul>
-                    <li><Link to="/Home">Home</Link></li>
-                    <li><Link to="/Steve">Steve</Link></li>
-                    <li><Link to="/Daily">Daily</Link></li>
+                    <li className="Home"><Link to="/Home">Home</Link></li>
+                    <li className="Steve"><Link to="/Steve">Steve</Link></li>
+                    <li className="Daily"><Link to="/Daily">Daily</Link></li>
                 </ul>
             </nav>
         </>
