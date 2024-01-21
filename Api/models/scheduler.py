@@ -1,5 +1,5 @@
 from bay import *
-from entry import *
+from Api.models.service_request import *
 from datetime import datetime, timedelta
 
 bay1 = Bay()

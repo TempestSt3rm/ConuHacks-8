@@ -4,27 +4,21 @@ from datetime import datetime, timedelta
 class Bay():
     counter = 0
     
-    def __init__(self):
+    def __init__(self, vehicleType):
         self.id = Bay.get_next_id()
         self.name = "Bay " + str(self.id)
-        self.schedule = []
+        self.vehicle_type = vehicleType
     
     @classmethod
     def get_next_id(cls):
         cls.counter +=1
         return cls.counter
-
-    def endPoint(self):
-        if self.schedule == []:
-            return 0
+    
+    def equals(self, other):
+        if self.id == other.id:
+            return True
         else:
-            return self.schedule[-1].outTime()
-    
-    def addEntry(self,entry):
-        self.schedule.append(entry)
-    
-    def clear(self):
-        self.schedule = []
+            return False
 
 class SpecialBay(Bay):
     def __init__(self,vehiculeType):
