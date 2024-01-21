@@ -40,6 +40,12 @@ class Entry():
         else:
             raise ValueError(f"Unrecognized vehicle type: {self.type}")
     
+    def checkOverlap(self,entry):
+        if self.outTime() > entry.inTime:
+            return True
+        else:
+            return False
+
     def getWalkin(self):
         if self.inTime == self.timeStamp:
             return True

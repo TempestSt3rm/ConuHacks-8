@@ -15,8 +15,23 @@ bay10Class2Truck = SpecialBay("class 2 truck")
 class scheduler():
     def __init__(self,entryForDay):
         self.entryForDay = entryForDay
-    
-    
+        self.bays = [bay1,bay2,bay3,bay4,bay5,bay6Compact,bay7Medium,bay8Full,bay9Class1Truck,bay10Class2Truck]
+
+    def schedule(self):
+        for entry in self.entryForDay:
+            for bay in self.bays:
+                if bay.schedule == []:
+                    bay.addEntry(entry)
+                    break
+                elif bay.schedule[-1].outTime() < entry.inTime :
+                    bay.addEntry(entry)
+                    break
+                elif bay.schedule[-1].outTime() > entry.inTime:
+                    continue
+                else:
+                    print("no bay available")
+                    break
+
     
     
 

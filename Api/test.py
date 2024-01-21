@@ -37,59 +37,39 @@ class ServiceRequest:
         self.requested_appointment = requested_appointment
         self.vehicle_type = vehicle_type
 
-class ServiceBay:
-    def __init__(self, vehicle_type):
-        self.vehicle_type = vehicle_type
-        self.available = True
-        self.current_vehicle = None
-        self.service_end_time = None
+class Bay:
+    id_counter = 0
 
-class RevenueTracker:
     def __init__(self):
-        self.actual_revenue = 0
-        self.lost_revenue = 0
+        self.id = Bay.get_next_id()
+        self.name = "Bay " + str(self.id)
+        self.entry_list = []
 
-    def add_revenue(self, amount):
-        self.actual_revenue += amount
-
-    def add_lost_revenue(self, amount):
-        self.lost_revenue += amount
-
-revenue_tracker = RevenueTracker()
+    @classmethod
+    def get_next_id(cls):
+        cls.id_counter += 1
+        return cls.id_counter
 
 # List of 10 service bays 2 for each vehicle type
 service_bays = [
-    ServiceBay('compact'),
-    ServiceBay('compact'),
-    ServiceBay('medium'),
-    ServiceBay('medium'),
-    ServiceBay('full-size'),
-    ServiceBay('full-size'),
-    ServiceBay('class 1 truck'),
-    ServiceBay('class 1 truck'),
-    ServiceBay('class 2 truck'),
-    ServiceBay('class 2 truck')
+    Bay('compact'),
+    Bay('compact'),
+    Bay('medium'),
+    Bay('medium'),
+    Bay('full-size'),
+    Bay('full-size'),
+    Bay('class 1 truck'),
+    Bay('class 1 truck'),
+    Bay('class 2 truck'),
+    Bay('class 2 truck')
 ]
 
 # 
 
-def schedule_service_request(service_request : ServiceRequest, service_bays : ServiceBay, revenue_tracker : RevenueTracker):
+def schedule_service_request(service_request : ServiceRequest, service_bays : Bay):
     """
     Schedules a service request, assigning a bay if available and tracking revenue.
     """
-
-    available_bay = find_available_bay(service_request.timestamp, service_bays)
-
-    if available_bay:
-        # Assign bay, update availability, and calculate revenue
-        available_bay.available = False
-        available_bay.current_vehicle = service_request
-        available_bay.service_end_time = calculate_service_end_time(service_request.vehicle_type)
-        revenue_tracker.add_revenue(get_service_charge(service_request.vehicle_type))
-    else:
-        # Mark request as turned away and calculate lost revenue
-        revenue_tracker.add_lost_revenue(get_service_charge(service_request.vehicle_type))
-        print(f"Turned away: {service_request}")  # Optional logging for visibility
 
 # HELPER FUNCTIONS
 
